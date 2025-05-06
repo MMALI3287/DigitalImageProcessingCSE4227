@@ -116,9 +116,9 @@ The first page provides a chapter/lecture guide:
     - Normalizes histogram to range.
   - **3. Histogram Equalization:** Aims to produce a flat histogram (uniform distribution of intensities) for contrast enhancement. (Page 23-24)
     - Target: Contrast enhance.
-    - Process: \(s*k = T(r_k) = (L-1) \sum*{j=0}^{k} P_r(r_j) = (L-1) \times CDF(r_k)\).
+    - Process: $s_k = T(r_k) = (L-1) \sum_{j=0}^{k} P_r(r_j) = (L-1) \times CDF(r_k)$.
     - Example shown with calculations and original/equalized histograms.
-    - Transformation function \(s_k\) vs \(r_k\) is a monotonically increasing curve.
+    - Transformation function $s_k$ vs $r_k$ is a monotonically increasing curve.
   - **Histogram Specification/Matching:** (Mentioned on the first index page, but detailed notes not explicitly found in this PDF set, though it's a standard histogram processing technique that transforms an image to have a specific, desired histogram shape).
 
 ### E. Spatial Filtering (Lecture 6 - Page 25 to Page 33; Lecture 7 - Page 34 to Page 37)

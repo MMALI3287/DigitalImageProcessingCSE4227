@@ -8,10 +8,10 @@
 - **Process:**
 
   1. Initialize a dictionary with single-character strings (e.g., for an 8-bit image, entries 0-255 represent the pixel values).
-  2. Read the input sequence. Find the longest string \(S\) in the dictionary that matches the current input.
-  3. Output the code for \(S\).
-  4. Take the next character \(C\) from the input. Add the string \(S+C\) to the dictionary with a new code.
-  5. Set \(S = C\) and repeat from step 2.
+  2. Read the input sequence. Find the longest string $(S)$ in the dictionary that matches the current input.
+  3. Output the code for $(S)$.
+  4. Take the next character $(C)$ from the input. Add the string $(S+C)$ to the dictionary with a new code.
+  5. Set $(S = C)$ and repeat from step 2.
 
 - **Example 1 (Page 1-3):**
 
@@ -56,13 +56,13 @@
   4. Repeat until only one node (the root) remains.
   5. The code for each symbol is read by traversing the tree from the root to the leaf.
 
-- **Entropy (\(H\)):** The theoretical minimum average number of bits per symbol.
+- **Entropy $(H)$:** The theoretical minimum average number of bits per symbol.
   $$ H = -\sum\_{k} P_r(r_k) \log_2 P_r(r_k) $$
-  where \( P_r(r_k) \) is the probability of symbol \( r_k \).
-- **Average Length (\(L\_{avg}\)):** The average number of bits per symbol achieved by the Huffman code.
+  where $P_r(r_k)$ is the probability of symbol $r_k$.
+- **Average Length $(L_{avg})$:** The average number of bits per symbol achieved by the Huffman code.
   $$ L*{avg} = \sum*{k} L*k P_r(r_k) $$
-  where \( L_k \) is the length of the Huffman code for symbol \( r_k \).
-  For lossless compression, \( H \le L*{avg} \).
+  where $L_k$ is the length of the Huffman code for symbol $r_k$.
+  For lossless compression, $H \le L*{avg}$.
 
 - **Example 1 (Page 4-5):**
 
@@ -93,7 +93,7 @@
   - **Entropy:** \(H \approx 1.811\) bits/pixel.
   - **Average Length:** \(L\_{avg} = (0.375 \times 1) + (0.375 \times 2) + (0.125 \times 3) + (0.125 \times 3) = 1.875\) bits/pixel.
   - **Compression Ratio:** \( \frac{8}{1.875} \approx 4.267:1 \).
-  - **Relative Data Redundancy (\(R_D\)):** \( R*D = 1 - \frac{1}{\text{Compression Ratio}} = 1 - \frac{L*{avg}}{L\_{original}} = 1 - \frac{1.875}{8} \approx 0.7656 \) or 76.56%.
+  - **Relative Data Redundancy (\(R_D\)):** \( R\*D = 1 - \frac{1}{\text{Compression Ratio}} = 1 - \frac{L*{avg}}{L*{original}} = 1 - \frac{1.875}{8} \approx 0.7656 \) or 76.56%.
 
 - **Maximum Compression with Huffman (Page 4):**
   - For an image with entropy \(H_e\), the maximum compression ratio achievable is \( \frac{\text{Original bits/pixel}}{H_e} \).
@@ -169,12 +169,12 @@
 
 - **Concept:** A method to adjust image intensities to enhance contrast by spreading out the most frequent intensity values. It aims to produce an output image with a flatter histogram.
 - **Process:**
-  1. Calculate the histogram \(h(r_k)\) of the input image, where \(r_k\) is the \(k\)-th intensity level.
-  2. Calculate the Probability Density Function (PDF): \( P(r_k) = \frac{h(r_k)}{MN} \), where MN is the total number of pixels.
-  3. Calculate the Cumulative Distribution Function (CDF): \( CDF(r*k) = \sum*{j=0}^{k} P(r_j) \).
-  4. Transform the input intensity \(r_k\) to an output intensity \(s_k\):
+  1. Calculate the histogram $h(r_k)$ of the input image, where $r_k$ is the $k$-th intensity level.
+  2. Calculate the Probability Density Function (PDF): $P(r_k) = \frac{h(r_k)}{MN}$, where MN is the total number of pixels.
+  3. Calculate the Cumulative Distribution Function (CDF): $CDF(r_k) = \sum_{j=0}^{k} P(r_j)$.
+  4. Transform the input intensity $r_k$ to an output intensity $s_k$:
      $$ s_k = T(r_k) = (L-1) \times CDF(r_k) $$
-     where \(L\) is the number of possible intensity levels (e.g., 256 for 8-bit). \(s_k\) is typically rounded to the nearest integer.
+     where $L$ is the number of possible intensity levels (e.g., 256 for 8-bit). $s_k$ is typically rounded to the nearest integer.
 - **Example 1 (Page 14):**
   - 4x4 image, 5-bit gray values (\(L=32\)). 16 distinct pixel values, each occurring once.
   - \(P(r_k) = \frac{1}{16} = 0.0625\) for each present \(r_k\).
@@ -263,7 +263,7 @@
 
 #### 3. Root Mean Square Error (RMSE) (Page 9)
 
-- A fidelity criterion to measure the difference between an original image \(f(x,y)\) and a processed/reconstructed image \(f'(x,y)\).
+- A fidelity criterion to measure the difference between an original image $f(x,y)$ and a processed/reconstructed image $f'(x,y)$.
   $$ RMSE = \sqrt{\frac{1}{MN} \sum*{x=0}^{M-1}\sum*{y=0}^{N-1} [f'(x,y) - f(x,y)]^2} $$
-- **Example:** If all pixel values in a decompressed image are increased by 2 compared to the original (i.e., \(f'(x,y) - f(x,y) = 2\) for all pixels).
-  - For a 3x3 image: \( RMSE = \sqrt{\frac{1}{3 \times 3} \sum (2)^2} = \sqrt{\frac{1}{9} \times 9 \times 4} = \sqrt{4} = 2 \).
+- **Example:** If all pixel values in a decompressed image are increased by 2 compared to the original (i.e., $f'(x,y) - f(x,y) = 2$ for all pixels).
+  - For a 3x3 image: $RMSE = \sqrt{\frac{1}{3 \times 3} \sum (2)^2} = \sqrt{\frac{1}{9} \times 9 \times 4} = \sqrt{4} = 2$.

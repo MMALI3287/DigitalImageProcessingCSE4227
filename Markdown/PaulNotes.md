@@ -7,10 +7,10 @@
   - **Fit:** The SE perfectly matches the underlying image pixels (all SE pixels match).
   - **Hit:** Any (at least one) pixel of the SE matches the underlying image pixels.
 
-- **1. Erosion (\(A \ominus B\)):**
+- **1. Erosion ($A \ominus B$):**
 
   - **Process:** All pixels of the structuring element (B) must match the pixels of the original image (A) for the output pixel (at the SE's origin position) to be set. In other words, the SE has to "fit".
-  - **Equation:** \( (A \ominus B) = \{z \mid (B)\_z \subseteq A \} \) (The translation of B by z is contained in A).
+  - **Equation:** $ (A \ominus B) = \{z \mid (B)\_z \subseteq A \} $ (The translation of B by z is contained in A).
   - **Effects:**
     - Shrinks the foreground object.
     - Removes spiky edges, smoothens object boundaries.
@@ -20,10 +20,10 @@
     - Holes inside an object are _not_ removed.
   - **Example (Page 6):** Shows an image F eroded by SE B. If `fit=1`, output is 1, else 0.
 
-- **2. Dilation (\(A \oplus B\)):**
+- **2. Dilation ($A \oplus B$):**
 
   - **Process:** Any (at least one) pixel of the structuring element (B) must match a pixel of the original image (A) for the output pixel (at the SE's origin position) to be set. In other words, the SE has to "hit".
-  - **Equation:** \( (A \oplus B) = \{z \mid (\hat{B})\_z \cap A \neq \emptyset \} \) (The reflection of B, translated by z, intersects with A). _Note: The notes use \( (B)\_z \cap A \neq \emptyset \) which is common for dilation if B is symmetric or if the definition of B already considers its reflection for the "hit" condition._
+  - **Equation:** $ (A \oplus B) = \{z \mid (\hat{B})_z \cap A \neq \emptyset \} $ (The reflection of B, translated by z, intersects with A). \_Note: The notes use \( (B)\_z \cap A \neq \emptyset \) which is common for dilation if B is symmetric or if the definition of B already considers its reflection for the "hit" condition._
   - **Effects:**
     - Enlarges the foreground object.
     - Fills in holes and small gaps.
@@ -37,10 +37,10 @@
   - \( (A \ominus B)^c = A^c \oplus \hat{B} \) (Erosion of A by B is the complement of the dilation of A's complement by the reflection of B).
   - \( (A \oplus B)^c = A^c \ominus \hat{B} \) (Dilation of A by B is the complement of the erosion of A's complement by the reflection of B).
 
-- **3. Opening (\(A \circ B\)):**
+- **3. Opening ($A \circ B$):**
 
   - **Process:** Erosion followed by dilation, using the same structuring element.
-  - **Equation:** \( A \circ B = (A \ominus B) \oplus B \)
+  - **Equation:** $ A \circ B = (A \ominus B) \oplus B $
   - **Effects:**
     - Smoothes the outline by rounding off sharp points (breaks narrow isthmuses).
     - Removes small protrusions, thin bridges, and any parts smaller than the structuring element.
@@ -48,10 +48,10 @@
     - Doesn't significantly change the basic core size of the image (doesn't make it larger or smaller overall, unlike plain erosion or dilation).
   - **Example (Page 6):** Shows opening of F by B.
 
-- **4. Closing (\(A \bullet B\)):**
+- **4. Closing ($A \bullet B$):**
 
   - **Process:** Dilation followed by erosion, using the same structuring element.
-  - **Equation:** \( A \bullet B = (A \oplus B) \ominus B \)
+  - **Equation:** $ A \bullet B = (A \oplus B) \ominus B $
   - **Effects:**
     - Smoothes the outline by filling small holes and gaps.
     - Connects nearby objects and bridges small breaks.
